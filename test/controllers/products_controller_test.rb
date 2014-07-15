@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
   setup do
-    @product = products(:one)
+    @product = products(:ruby)
     @update = {
       title: "Sample Product",
       description: "Lorem IPsum I'm just trying to make this description reach over 80 characters",
@@ -41,7 +41,7 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should update product" do
-    patch :update, id: @update, product: @update
+    patch :update, id: @product, product: @update
     assert_redirected_to product_path(assigns(:product))
   end
 
