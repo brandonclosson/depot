@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 	validates_presence_of :title, :description, :image_url, :price
-	validates_uniqueness_of :title
+  validates :title, uniqueness: true, length: { minimum: 5 }
 	validates :price, numericality: { greater_than_or_equal_to: 0.01 }
 	validates :image_url, allow_blank: true,
 		format: {
