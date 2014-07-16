@@ -7,7 +7,12 @@ class Cart < ActiveRecord::Base
       current_item.quantity += 1
     else
       current_item = line_items.build(product_id: product_id)
+      current_item.price = Product.find(product_id).price
     end
     current_item
+  end
+
+  def total_price
+    line_items.inject(0) { |sum, li| sum + li.total_price}
   end
 end
