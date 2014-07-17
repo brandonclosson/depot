@@ -13,13 +13,18 @@
   </div>
   <div id="columns">
     <div id="side">
-      <ul>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><%= Time.now.to_formatted_s(:long) %></li>
-      </ul>
+      <% if @cart %>
+        <% hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+          <%= render @cart %>
+        <% end %>
+        <ul>
+          <li><%= link_to 'Home', root_path %></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">News</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><%= Time.now.to_formatted_s(:long) %></li>
+        </ul>
+      <% end %>
     </div>
 
     <div id="main">
